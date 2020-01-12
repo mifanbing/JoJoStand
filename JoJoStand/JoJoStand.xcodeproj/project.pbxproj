@@ -16,6 +16,7 @@
 		FE614DD823CBB2E500DBFEE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE614DD623CBB2E500DBFEE1 /* LaunchScreen.storyboard */; };
 		FE614DE223CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DE123CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift */; };
 		FE614DE423CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DE323CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift */; };
+		FE614DE623CBD1E200DBFEE1 /* BodyConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DE523CBD1E200DBFEE1 /* BodyConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		FE614DD923CBB2E500DBFEE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE614DE123CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyJointCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE614DE323CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyJointEmptyCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE614DE523CBD1E200DBFEE1 /* BodyConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				FE614DCE23CBB2E400DBFEE1 /* Main.storyboard */,
 				FE614DE123CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift */,
 				FE614DE323CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift */,
+				FE614DE523CBD1E200DBFEE1 /* BodyConfiguration.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */,
 				FE614DE423CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift in Sources */,
 				FE614DD323CBB2E400DBFEE1 /* JoJoStand.xcdatamodeld in Sources */,
+				FE614DE623CBD1E200DBFEE1 /* BodyConfiguration.swift in Sources */,
 				FE614DCB23CBB2E400DBFEE1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

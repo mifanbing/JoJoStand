@@ -7,7 +7,7 @@ class MainViewController: UIViewController {
     let allBodyJoints: [String] = BodyJoint.allCases.map { $0.rawValue }
     var currentBodyJoint: BodyJoint!
     var currentBodyJointIndex: Int!
-    var bodyLocations: BodyLocation = BodyLocation()
+    var bodyConfiguration: BodyConfiguration = BodyConfiguration()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +39,16 @@ class MainViewController: UIViewController {
         let xNormalized = Double(tapLocation.x / frame.width)
         let yNormalized = Double(tapLocation.y / frame.height)
         
-        bodyLocations.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
+        bodyConfiguration.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
         //print("\(xNormalized) \(yNormalized) \(currentBodyJoint)")
         dropPin(image: tappedImage, x: tapLocation.x, y: tapLocation.y)
+        bodyConfiguration.bodyVectors.forEach {
+            print($0)
+        }
     }
     
     func dropPin(image: UIImageView, x: CGFloat, y: CGFloat) {
-        if bodyLocations.bodyLocations[currentBodyJoint] != nil {
+        if bodyConfiguration.bodyLocations[currentBodyJoint] != nil {
             for subView in image.subviews {
                 if subView.tag == currentBodyJointIndex {
                     subView.removeFromSuperview()
@@ -96,36 +99,4 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     
-}
-
-class BodyLocation {
-    var bodyLocations: [BodyJoint: NormalizedLocation?]
- 
-    init() {
-        var bodyLocationsTemp = [BodyJoint: NormalizedLocation]()
-        BodyJoint.allCases.forEach {
-            bodyLocationsTemp[$0] = nil //NormalizedLocation(xNormalized: 0, yNormalized: 0)
-        }
-        bodyLocations = bodyLocationsTemp
-    }
-    
-    func update(bodyJoint: BodyJoint, normalizedLocation: NormalizedLocation) {
-        bodyLocations[bodyJoint] = normalizedLocation
-    }
-}
-
-struct NormalizedLocation {
-    let xNormalized: Double
-    let yNormalized: Double
-}
-
-enum BodyJoint: String, CaseIterable {
-    case head
-    case neck
-    case shoulderLeft
-    case shoulderRight
-    case elbowLeft
-    case elbowRight
-    case handLeft
-    case handRight
 }
