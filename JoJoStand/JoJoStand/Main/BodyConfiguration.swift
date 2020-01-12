@@ -1,8 +1,8 @@
 import Foundation
 
 class BodyConfiguration {
-    var bodyLocations: [BodyJoint: NormalizedLocation?]
-    var bodyVectors: [BodyVector: NormalizedVector?]
+    var bodyLocations: [BodyJoint: NormalizedLocation]
+    var bodyVectors: [BodyVector: NormalizedVector]
     
     init() {
         var bodyLocationsTemp = [BodyJoint: NormalizedLocation]()
@@ -22,7 +22,7 @@ class BodyConfiguration {
         bodyLocations[bodyJoint] = normalizedLocation
         switch bodyJoint {
         case .head:
-            if let neckLocationDict = bodyLocations[.neck], let neckLocation = neckLocationDict {
+            if let neckLocation = bodyLocations[.neck] {
                 bodyVectors[.head2Neck] = NormalizedVector(location1: normalizedLocation, location2: neckLocation)
             }
         default:
