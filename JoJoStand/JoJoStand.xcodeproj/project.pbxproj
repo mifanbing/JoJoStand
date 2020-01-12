@@ -1,0 +1,358 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DC823CBB2E400DBFEE1 /* AppDelegate.swift */; };
+		FE614DCB23CBB2E400DBFEE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DCA23CBB2E400DBFEE1 /* SceneDelegate.swift */; };
+		FE614DCD23CBB2E400DBFEE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DCC23CBB2E400DBFEE1 /* ViewController.swift */; };
+		FE614DD023CBB2E400DBFEE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE614DCE23CBB2E400DBFEE1 /* Main.storyboard */; };
+		FE614DD323CBB2E400DBFEE1 /* JoJoStand.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE614DD123CBB2E400DBFEE1 /* JoJoStand.xcdatamodeld */; };
+		FE614DD523CBB2E500DBFEE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE614DD423CBB2E500DBFEE1 /* Assets.xcassets */; };
+		FE614DD823CBB2E500DBFEE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE614DD623CBB2E500DBFEE1 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FE614DC523CBB2E400DBFEE1 /* JoJoStand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoJoStand.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE614DC823CBB2E400DBFEE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FE614DCA23CBB2E400DBFEE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FE614DCC23CBB2E400DBFEE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FE614DCF23CBB2E400DBFEE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FE614DD223CBB2E400DBFEE1 /* JoJoStand.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JoJoStand.xcdatamodel; sourceTree = "<group>"; };
+		FE614DD423CBB2E500DBFEE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE614DD723CBB2E500DBFEE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FE614DD923CBB2E500DBFEE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FE614DC223CBB2E400DBFEE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FE614DBC23CBB2E400DBFEE1 = {
+			isa = PBXGroup;
+			children = (
+				FE614DC723CBB2E400DBFEE1 /* JoJoStand */,
+				FE614DC623CBB2E400DBFEE1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FE614DC623CBB2E400DBFEE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FE614DC523CBB2E400DBFEE1 /* JoJoStand.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FE614DC723CBB2E400DBFEE1 /* JoJoStand */ = {
+			isa = PBXGroup;
+			children = (
+				FE614DC823CBB2E400DBFEE1 /* AppDelegate.swift */,
+				FE614DCA23CBB2E400DBFEE1 /* SceneDelegate.swift */,
+				FE614DCC23CBB2E400DBFEE1 /* ViewController.swift */,
+				FE614DCE23CBB2E400DBFEE1 /* Main.storyboard */,
+				FE614DD423CBB2E500DBFEE1 /* Assets.xcassets */,
+				FE614DD623CBB2E500DBFEE1 /* LaunchScreen.storyboard */,
+				FE614DD923CBB2E500DBFEE1 /* Info.plist */,
+				FE614DD123CBB2E400DBFEE1 /* JoJoStand.xcdatamodeld */,
+			);
+			path = JoJoStand;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FE614DC423CBB2E400DBFEE1 /* JoJoStand */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE614DDC23CBB2E500DBFEE1 /* Build configuration list for PBXNativeTarget "JoJoStand" */;
+			buildPhases = (
+				FE614DC123CBB2E400DBFEE1 /* Sources */,
+				FE614DC223CBB2E400DBFEE1 /* Frameworks */,
+				FE614DC323CBB2E400DBFEE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JoJoStand;
+			productName = JoJoStand;
+			productReference = FE614DC523CBB2E400DBFEE1 /* JoJoStand.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FE614DBD23CBB2E400DBFEE1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "zeyi wang";
+				TargetAttributes = {
+					FE614DC423CBB2E400DBFEE1 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = FE614DC023CBB2E400DBFEE1 /* Build configuration list for PBXProject "JoJoStand" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FE614DBC23CBB2E400DBFEE1;
+			productRefGroup = FE614DC623CBB2E400DBFEE1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FE614DC423CBB2E400DBFEE1 /* JoJoStand */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FE614DC323CBB2E400DBFEE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE614DD823CBB2E500DBFEE1 /* LaunchScreen.storyboard in Resources */,
+				FE614DD523CBB2E500DBFEE1 /* Assets.xcassets in Resources */,
+				FE614DD023CBB2E400DBFEE1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FE614DC123CBB2E400DBFEE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE614DCD23CBB2E400DBFEE1 /* ViewController.swift in Sources */,
+				FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */,
+				FE614DD323CBB2E400DBFEE1 /* JoJoStand.xcdatamodeld in Sources */,
+				FE614DCB23CBB2E400DBFEE1 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FE614DCE23CBB2E400DBFEE1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE614DCF23CBB2E400DBFEE1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FE614DD623CBB2E500DBFEE1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE614DD723CBB2E500DBFEE1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FE614DDA23CBB2E500DBFEE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FE614DDB23CBB2E500DBFEE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FE614DDD23CBB2E500DBFEE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = JoJoStand/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = rick.JoJoStand;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FE614DDE23CBB2E500DBFEE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = JoJoStand/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = rick.JoJoStand;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FE614DC023CBB2E400DBFEE1 /* Build configuration list for PBXProject "JoJoStand" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE614DDA23CBB2E500DBFEE1 /* Debug */,
+				FE614DDB23CBB2E500DBFEE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE614DDC23CBB2E500DBFEE1 /* Build configuration list for PBXNativeTarget "JoJoStand" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE614DDD23CBB2E500DBFEE1 /* Debug */,
+				FE614DDE23CBB2E500DBFEE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FE614DD123CBB2E400DBFEE1 /* JoJoStand.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FE614DD223CBB2E400DBFEE1 /* JoJoStand.xcdatamodel */,
+			);
+			currentVersion = FE614DD223CBB2E400DBFEE1 /* JoJoStand.xcdatamodel */;
+			path = JoJoStand.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = FE614DBD23CBB2E400DBFEE1 /* Project object */;
+}
