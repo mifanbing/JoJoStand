@@ -63,7 +63,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V46-Ak-qjk">
-                                <rect key="frame" x="8" y="529" width="246" height="190"/>
+                                <rect key="frame" x="8" y="529" width="182" height="190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSJ-46-Xyp">
@@ -74,12 +74,17 @@
                                     <action selector="drawIt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dUB-Zr-tVt"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpU-jk-ALH">
+                                <rect key="frame" x="206" y="529" width="182" height="190"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="bodyJointCollectionView" destination="b49-nA-yv2" id="aHa-NR-D4i"/>
+                        <outlet property="cropHeadView" destination="jpU-jk-ALH" id="Q0O-vL-Iag"/>
                         <outlet property="headView" destination="V46-Ak-qjk" id="6r5-a6-ivm"/>
                         <outlet property="modelImage" destination="u9l-v1-SHv" id="nRB-At-eD0"/>
                     </connections>

@@ -3,6 +3,7 @@ import UIKit
 class MainViewController: UIViewController {
     @IBOutlet weak var modelImage: UIImageView!
     @IBOutlet weak var headView: UIImageView!
+    @IBOutlet weak var cropHeadView: UIImageView!
     @IBOutlet weak var bodyJointCollectionView: UICollectionView!
     
     let allBodyJoints: [String] = BodyJoint.allCases.map { $0.rawValue }
@@ -59,7 +60,7 @@ class MainViewController: UIViewController {
             }
         }
         
-        let pinImage = UIImageView(frame: CGRect(x: x, y: y, width: CGFloat(20), height: CGFloat(20)))
+        let pinImage = UIImageView(frame: CGRect(x: x, y: y, width: CGFloat(5), height: CGFloat(5)))
         pinImage.backgroundColor = .green
         pinImage.tag = currentBodyJointIndex
         
@@ -69,10 +70,7 @@ class MainViewController: UIViewController {
     @IBAction func drawIt(_ sender: Any) {
         let head2Neck = bodyConfiguration.bodyVectors[.head2Neck]
         let headLocation = bodyConfiguration.bodyLocations[.head]
-       
-//        let croppedHeadView = modelImage.image!.cgImage!.cropping(to: CGRect(x: 50, y: 50, width: 50, height: 50))
-//        headView.image = UIImage(cgImage: croppedHeadView!)
-        
+              
         let whiteView = UIView(frame: headView.bounds)
         let maskLayer = CAShapeLayer() //create the mask layer
 
@@ -106,8 +104,6 @@ class MainViewController: UIViewController {
                     + Double(headViewHeight) * head2Neck!.yComponent
                     + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
                     
-
-
         // Create a path with the rectangle in it.
         let path = UIBezierPath(rect: headView.bounds)
         path.addLine(to: CGPoint(x: point1X, y: point1Y))
@@ -126,10 +122,20 @@ class MainViewController: UIViewController {
         whiteView.clipsToBounds = true
 
         whiteView.alpha = 0.8
-        whiteView.backgroundColor = UIColor.red
+        whiteView.backgroundColor = UIColor.white
 
         //If you are in a VC add to the VC's view (over the image)
         headView.addSubview(whiteView)
+        
+        let modelViewHeight = modelImage.frame.height
+        let modelViewWidth = modelImage.frame.width
+        let xMin = min(point1X, point2X, point3X, point4X) * Double(headView.image!.size.width/headViewWidth)
+        let yMin = min(point1Y, point2Y, point3Y, point4Y) * Double(headView.image!.size.height/headViewHeight)
+        let xMax = max(point1X, point2X, point3X, point4X) * Double(headView.image!.size.width/headViewWidth)
+        let yMax = max(point1Y, point2Y, point3Y, point4Y) * Double(headView.image!.size.height/headViewHeight)
+        let croppedHeadView = headView.image!.cgImage!.cropping(to: CGRect(x: xMin, y: yMin, width: xMax - xMin, height: yMax - yMin))
+        cropHeadView.image = UIImage(cgImage: croppedHeadView!)
+         
     }
 }
 
