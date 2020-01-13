@@ -2,6 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     @IBOutlet weak var modelImage: UIImageView!
+    @IBOutlet weak var headView: UIImageView!
     @IBOutlet weak var bodyJointCollectionView: UICollectionView!
     
     let allBodyJoints: [String] = BodyJoint.allCases.map { $0.rawValue }
@@ -16,6 +17,8 @@ class MainViewController: UIViewController {
         modelImage.isUserInteractionEnabled = true
         modelImage.addGestureRecognizer(tapGestureRecognizer)
         modelImage.image = UIImage(named: "Josuke")
+        
+        headView.image = UIImage(named: "Josuke")
         
         bodyJointCollectionView.delegate = self
         bodyJointCollectionView.dataSource = self
@@ -46,7 +49,7 @@ class MainViewController: UIViewController {
             print($0)
         }
     }
-    
+
     func dropPin(image: UIImageView, x: CGFloat, y: CGFloat) {
         if bodyConfiguration.bodyLocations[currentBodyJoint] != nil {
             for subView in image.subviews {
@@ -61,6 +64,72 @@ class MainViewController: UIViewController {
         pinImage.tag = currentBodyJointIndex
         
         image.addSubview(pinImage)
+    }
+    
+    @IBAction func drawIt(_ sender: Any) {
+        let head2Neck = bodyConfiguration.bodyVectors[.head2Neck]
+        let headLocation = bodyConfiguration.bodyLocations[.head]
+       
+//        let croppedHeadView = modelImage.image!.cgImage!.cropping(to: CGRect(x: 50, y: 50, width: 50, height: 50))
+//        headView.image = UIImage(cgImage: croppedHeadView!)
+        
+        let whiteView = UIView(frame: headView.bounds)
+        let maskLayer = CAShapeLayer() //create the mask layer
+
+        let headViewWidth = headView.frame.width
+        let headViewHeight = headView.frame.height
+
+        let point1X = Double(headViewWidth) * headLocation!.xNormalized + 0.3 * Double(headViewHeight) * head2Neck!.yComponent
+        let point1Y = Double(headViewHeight) * headLocation!.yNormalized + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
+
+        let point2X = Double(headViewWidth) * headLocation!.xNormalized
+                    - 0.3 * Double(headViewHeight) * head2Neck!.yComponent
+                
+        let point2Y = Double(headViewHeight) * headLocation!.yNormalized
+                    + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
+                    
+        
+        let point3X = Double(headViewWidth) * headLocation!.xNormalized
+                    + Double(headViewWidth) * head2Neck!.xComponent
+                    - 0.3 * Double(headViewHeight) * head2Neck!.yComponent
+                    
+        let point3Y = Double(headViewHeight) * headLocation!.yNormalized
+                    + Double(headViewHeight) * head2Neck!.yComponent
+                    + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
+                    
+
+        let point4X = Double(headViewWidth) * headLocation!.xNormalized
+                    + Double(headViewWidth) * head2Neck!.xComponent
+                    + 0.3 * Double(headViewHeight) * head2Neck!.yComponent
+                    
+        let point4Y = Double(headViewHeight) * headLocation!.yNormalized
+                    + Double(headViewHeight) * head2Neck!.yComponent
+                    + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
+                    
+
+
+        // Create a path with the rectangle in it.
+        let path = UIBezierPath(rect: headView.bounds)
+        path.addLine(to: CGPoint(x: point1X, y: point1Y))
+        path.addLine(to: CGPoint(x: point2X, y: point2Y))
+        path.addLine(to: CGPoint(x: point3X, y: point3Y))
+        path.addLine(to: CGPoint(x: point4X, y: point4Y))
+        path.addLine(to: CGPoint(x: point1X, y: point1Y))
+
+        // Give the mask layer the path you just draw
+        maskLayer.path = path.cgPath
+        // Fill rule set to exclude intersected paths
+        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
+
+        // By now the mask is a rectangle with a circle cut out of it. Set the mask to the view and clip.
+        whiteView.layer.mask = maskLayer
+        whiteView.clipsToBounds = true
+
+        whiteView.alpha = 0.8
+        whiteView.backgroundColor = UIColor.red
+
+        //If you are in a VC add to the VC's view (over the image)
+        headView.addSubview(whiteView)
     }
 }
 
