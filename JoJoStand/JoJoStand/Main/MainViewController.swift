@@ -20,6 +20,11 @@ class MainViewController: UIViewController {
         modelImage.image = UIImage(named: "Josuke")
         
         headView.image = UIImage(named: "Josuke")
+        headView.layer.borderColor = .init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        headView.layer.borderWidth = 5
+        
+        cropHeadView.layer.borderColor = .init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        cropHeadView.layer.borderWidth = 5
         
         bodyJointCollectionView.delegate = self
         bodyJointCollectionView.dataSource = self
@@ -39,9 +44,10 @@ class MainViewController: UIViewController {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
         let tapLocation = tapGestureRecognizer.location(in: tappedImage)
         
+        //Will rotate w.r.t center
         let frame = tappedImage.frame
-        let xNormalized = Double(tapLocation.x / frame.width)
-        let yNormalized = Double(tapLocation.y / frame.height)
+        let xNormalized = Double(tapLocation.x / frame.width) - 0.5
+        let yNormalized = Double(tapLocation.y / frame.height) - 0.5
         
         bodyConfiguration.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
         //print("\(xNormalized) \(yNormalized) \(currentBodyJoint)")
@@ -68,74 +74,64 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func drawIt(_ sender: Any) {
-        let head2Neck = bodyConfiguration.bodyVectors[.head2Neck]
-        let headLocation = bodyConfiguration.bodyLocations[.head]
-              
-        let whiteView = UIView(frame: headView.bounds)
-        let maskLayer = CAShapeLayer() //create the mask layer
-
-        let headViewWidth = headView.frame.width
-        let headViewHeight = headView.frame.height
-
-        let point1X = Double(headViewWidth) * headLocation!.xNormalized + 0.3 * Double(headViewHeight) * head2Neck!.yComponent
-        let point1Y = Double(headViewHeight) * headLocation!.yNormalized + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
-
-        let point2X = Double(headViewWidth) * headLocation!.xNormalized
-                    - 0.3 * Double(headViewHeight) * head2Neck!.yComponent
-                
-        let point2Y = Double(headViewHeight) * headLocation!.yNormalized
-                    + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
-                    
+        let head2Neck = bodyConfiguration.bodyVectors[.head2Neck]!
+        let headLocation = bodyConfiguration.bodyLocations[.head]!
+        let neckLocation = bodyConfiguration.bodyLocations[.neck]!
         
-        let point3X = Double(headViewWidth) * headLocation!.xNormalized
-                    + Double(headViewWidth) * head2Neck!.xComponent
-                    - 0.3 * Double(headViewHeight) * head2Neck!.yComponent
-                    
-        let point3Y = Double(headViewHeight) * headLocation!.yNormalized
-                    + Double(headViewHeight) * head2Neck!.yComponent
-                    + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
-                    
-
-        let point4X = Double(headViewWidth) * headLocation!.xNormalized
-                    + Double(headViewWidth) * head2Neck!.xComponent
-                    + 0.3 * Double(headViewHeight) * head2Neck!.yComponent
-                    
-        let point4Y = Double(headViewHeight) * headLocation!.yNormalized
-                    + Double(headViewHeight) * head2Neck!.yComponent
-                    + 0.3 * Double(headViewWidth) * head2Neck!.xComponent
-                    
-        // Create a path with the rectangle in it.
-        let path = UIBezierPath(rect: headView.bounds)
-        path.addLine(to: CGPoint(x: point1X, y: point1Y))
-        path.addLine(to: CGPoint(x: point2X, y: point2Y))
-        path.addLine(to: CGPoint(x: point3X, y: point3Y))
-        path.addLine(to: CGPoint(x: point4X, y: point4Y))
-        path.addLine(to: CGPoint(x: point1X, y: point1Y))
-
-        // Give the mask layer the path you just draw
-        maskLayer.path = path.cgPath
-        // Fill rule set to exclude intersected paths
-        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
-
-        // By now the mask is a rectangle with a circle cut out of it. Set the mask to the view and clip.
-        whiteView.layer.mask = maskLayer
-        whiteView.clipsToBounds = true
-
-        whiteView.alpha = 0.8
-        whiteView.backgroundColor = UIColor.white
-
-        //If you are in a VC add to the VC's view (over the image)
-        headView.addSubview(whiteView)
+        let head2NeckAngle = atan(head2Neck.yComponent / head2Neck.xComponent)
+        let angle2Rotate = Double.pi / 2 + head2NeckAngle
         
-        let modelViewHeight = modelImage.frame.height
-        let modelViewWidth = modelImage.frame.width
-        let xMin = min(point1X, point2X, point3X, point4X) * Double(headView.image!.size.width/headViewWidth)
-        let yMin = min(point1Y, point2Y, point3Y, point4Y) * Double(headView.image!.size.height/headViewHeight)
-        let xMax = max(point1X, point2X, point3X, point4X) * Double(headView.image!.size.width/headViewWidth)
-        let yMax = max(point1Y, point2Y, point3Y, point4Y) * Double(headView.image!.size.height/headViewHeight)
-        let croppedHeadView = headView.image!.cgImage!.cropping(to: CGRect(x: xMin, y: yMin, width: xMax - xMin, height: yMax - yMin))
-        cropHeadView.image = UIImage(cgImage: croppedHeadView!)
-         
+        //headView.transform = CGAffineTransform(rotationAngle: -CGFloat(angle2Rotate))
+        headView.image = modelImage.image?.rotate(radians: -CGFloat(angle2Rotate))
+        
+        let headImageWidth = Double(headView.image!.size.width)
+        let headImageHeight = Double(headView.image!.size.height)
+        let headCenter = UnNormalizedLocation(x: headImageWidth/2, y: headImageHeight/2)
+        
+        let headX = (headLocation.xNormalized) * headImageWidth//modelImageWidth
+        let headY = (headLocation.yNormalized) * headImageHeight//modelImageHeight
+        let neckX = (neckLocation.xNormalized) * headImageWidth//modelImageWidth
+        let neckY = (neckLocation.yNormalized) * headImageHeight//modelImageHeight
+        
+        let headRotated = UnNormalizedLocation(x: headX, y: headY).rotated(by: -angle2Rotate)
+        headRotated.x = headRotated.x + headImageWidth/2
+        headRotated.y = headRotated.y + headImageHeight/2
+        
+        let neckRotated = UnNormalizedLocation(x: neckX, y: neckY).rotated(by: -angle2Rotate)
+        neckRotated.x = neckRotated.x + headImageWidth/2
+        neckRotated.y = neckRotated.y + headImageHeight/2
+        
+        let headImageRot = UIImageView(frame: CGRect(x: headRotated.x/Double(headImageWidth)*Double(headView.frame.width),
+                                                  y: headRotated.y/Double(headImageHeight)*Double(headView.frame.height),
+                                                  width: 5, height: 5))
+        headImageRot.backgroundColor = .green
+        headView.addSubview(headImageRot)
+        
+        let headImage = UIImageView(frame: CGRect(x: (headX + headImageWidth/2)/Double(headImageWidth)*Double(headView.frame.width),
+                                                  y: (headY + headImageHeight/2)/Double(headImageHeight)*Double(headView.frame.height),
+                                                  width: 5, height: 5))
+        headImage.backgroundColor = .red
+        headView.addSubview(headImage)
+        
+        let neckImageRot = UIImageView(frame: CGRect(x: neckRotated.x/Double(headImageWidth)*Double(headView.frame.width),
+                                                  y: neckRotated.y/Double(headImageHeight)*Double(headView.frame.height),
+                                                  width: 5, height: 5))
+        neckImageRot.backgroundColor = .green
+        headView.addSubview(neckImageRot)
+        
+        let neckImage = UIImageView(frame: CGRect(x: (neckX + headImageWidth/2)/Double(headImageWidth)*Double(headView.frame.width),
+                                                  y: (neckY + headImageHeight/2)/Double(headImageHeight)*Double(headView.frame.height),
+                                                  width: 5, height: 5))
+        neckImage.backgroundColor = .red
+        headView.addSubview(neckImage)
+        
+        //50 50 100 400 is right answer
+        let croppedImage = headView.image?.cgImage?.cropping(to: CGRect(x: headRotated.x,
+                                                                        y: headRotated.y,
+                                                                        width: 50,
+                                                                        height: neckRotated.y - headRotated.y))
+        
+        cropHeadView.image = UIImage(cgImage: croppedImage!)
     }
 }
 

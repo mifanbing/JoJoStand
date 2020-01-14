@@ -34,6 +34,37 @@ class BodyConfiguration {
 struct NormalizedLocation {
     let xNormalized: Double
     let yNormalized: Double
+    
+    func rotated(by angle: Double, withRespectTo location: NormalizedLocation) -> NormalizedLocation {
+        let xRotated = (xNormalized - location.xNormalized) * cos(angle)
+                        - (yNormalized - location.yNormalized) * sin(angle)
+                        + location.xNormalized
+        let yRotated = (xNormalized - location.xNormalized) * sin(angle)
+                        + (yNormalized - location.yNormalized) * cos(angle)
+                        + location.yNormalized
+        
+        return NormalizedLocation(xNormalized: xRotated, yNormalized: yRotated)
+    }
+}
+
+class UnNormalizedLocation {
+    var x: Double
+    var y: Double
+    
+    init(x: Double, y: Double) {
+        self.x = x
+        self.y = y
+    }
+    
+    func rotated(by angle: Double) -> UnNormalizedLocation {
+        let xRotated = x * cos(angle)
+                        - y * sin(angle)
+                    
+        let yRotated = x * sin(angle)
+                        + y * cos(angle)
+                        
+        return UnNormalizedLocation(x: xRotated, y: yRotated)
+    }
 }
 
 enum BodyJoint: String, CaseIterable {

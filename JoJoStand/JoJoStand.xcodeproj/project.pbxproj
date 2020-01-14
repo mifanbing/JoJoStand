@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE0FF22023CD3EDB00086681 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FF21F23CD3EDB00086681 /* UIImage.swift */; };
 		FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DC823CBB2E400DBFEE1 /* AppDelegate.swift */; };
 		FE614DCB23CBB2E400DBFEE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DCA23CBB2E400DBFEE1 /* SceneDelegate.swift */; };
 		FE614DCD23CBB2E400DBFEE1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DCC23CBB2E400DBFEE1 /* MainViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE0FF21F23CD3EDB00086681 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		FE614DC523CBB2E400DBFEE1 /* JoJoStand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoJoStand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE614DC823CBB2E400DBFEE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE614DCA23CBB2E400DBFEE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE0FF21E23CD3EC000086681 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FE0FF21F23CD3EDB00086681 /* UIImage.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		FE614DBC23CBB2E400DBFEE1 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				FE614DE023CBBA3A00DBFEE1 /* Main */,
+				FE0FF21E23CD3EC000086681 /* Extension */,
 				FE614DD423CBB2E500DBFEE1 /* Assets.xcassets */,
 				FE614DD623CBB2E500DBFEE1 /* LaunchScreen.storyboard */,
 				FE614DD923CBB2E500DBFEE1 /* Info.plist */,
@@ -167,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE614DE223CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift in Sources */,
+				FE0FF22023CD3EDB00086681 /* UIImage.swift in Sources */,
 				FE614DCD23CBB2E400DBFEE1 /* MainViewController.swift in Sources */,
 				FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */,
 				FE614DE423CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift in Sources */,
