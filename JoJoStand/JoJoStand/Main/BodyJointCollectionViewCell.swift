@@ -7,4 +7,11 @@ class BodyJointCollectionViewCell: UICollectionViewCell {
         nameLabel.text = name
     }
     
+    func clicked() {
+        nameLabel.backgroundColor = .red
+    }
+    
+    func unClicked() {
+        nameLabel.backgroundColor = .clear
+    }
 }
