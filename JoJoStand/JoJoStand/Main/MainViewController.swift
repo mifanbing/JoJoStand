@@ -10,6 +10,7 @@ class MainViewController: UIViewController {
     var currentBodyJoint: BodyJoint!
     var currentBodyJointIndex: Int!
     var bodyConfiguration: BodyConfiguration = BodyConfiguration()
+    var bodyImageDict: [BodyVector: CGImage]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,9 +18,9 @@ class MainViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         modelImage.isUserInteractionEnabled = true
         modelImage.addGestureRecognizer(tapGestureRecognizer)
-        modelImage.image = UIImage(named: "Josuke")
+        modelImage.image = UIImage(named: "tibi")
         
-        headView.image = UIImage(named: "Josuke")
+        headView.image = UIImage(named: "tibi")
         headView.layer.borderColor = .init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         headView.layer.borderWidth = 5
         
@@ -37,11 +38,13 @@ class MainViewController: UIViewController {
         
         currentBodyJoint = .head
         currentBodyJointIndex = 0
+        
+        bodyImageDict = [:]
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let transformViewController = segue.destination as? TransformViewController {
-            transformViewController.setup(headImage: cropHeadView.image!)
+            transformViewController.setup(bodyImageDict: bodyImageDict)
         }
     }
     
@@ -56,11 +59,7 @@ class MainViewController: UIViewController {
         let yNormalized = Double(tapLocation.y / frame.height) - 0.5
         
         bodyConfiguration.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
-        //print("\(xNormalized) \(yNormalized) \(currentBodyJoint)")
         dropPin(image: tappedImage, x: tapLocation.x, y: tapLocation.y)
-        bodyConfiguration.bodyVectors.forEach {
-            print($0)
-        }
     }
 
     func dropPin(image: UIImageView, x: CGFloat, y: CGFloat) {
@@ -80,63 +79,112 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func drawIt(_ sender: Any) {
-        let head2Neck = bodyConfiguration.bodyVectors[.head2Neck]!
-        let headLocation = bodyConfiguration.bodyLocations[.head]!
-        let neckLocation = bodyConfiguration.bodyLocations[.neck]!
-        
-        let head2NeckAngle = atan(head2Neck.yComponent / head2Neck.xComponent)
-        let angle2Rotate = Double.pi / 2 + head2NeckAngle
-        
-        //headView.transform = CGAffineTransform(rotationAngle: -CGFloat(angle2Rotate))
-        headView.image = modelImage.image?.rotate(radians: -CGFloat(angle2Rotate))
-        
-        let headImageWidth = Double(headView.image!.size.width)
-        let headImageHeight = Double(headView.image!.size.height)
-        let headCenter = Location(x: headImageWidth/2, y: headImageHeight/2)
-        
-        let headX = (headLocation.xNormalized) * headImageWidth//modelImageWidth
-        let headY = (headLocation.yNormalized) * headImageHeight//modelImageHeight
-        let neckX = (neckLocation.xNormalized) * headImageWidth//modelImageWidth
-        let neckY = (neckLocation.yNormalized) * headImageHeight//modelImageHeight
-        
-        let headRotated = Location(x: headX, y: headY).rotated(by: -angle2Rotate)
-        headRotated.x = headRotated.x + headImageWidth/2
-        headRotated.y = headRotated.y + headImageHeight/2
-        
-        let neckRotated = Location(x: neckX, y: neckY).rotated(by: -angle2Rotate)
-        neckRotated.x = neckRotated.x + headImageWidth/2
-        neckRotated.y = neckRotated.y + headImageHeight/2
-        
-//        let headImageRot = UIImageView(frame: CGRect(x: headRotated.x/Double(headImageWidth)*Double(headView.frame.width),
-//                                                  y: headRotated.y/Double(headImageHeight)*Double(headView.frame.height),
-//                                                  width: 5, height: 5))
-//        headImageRot.backgroundColor = .green
-//        headView.addSubview(headImageRot)
-//
-//        let headImage = UIImageView(frame: CGRect(x: (headX + headImageWidth/2)/Double(headImageWidth)*Double(headView.frame.width),
-//                                                  y: (headY + headImageHeight/2)/Double(headImageHeight)*Double(headView.frame.height),
-//                                                  width: 5, height: 5))
-//        headImage.backgroundColor = .red
-//        headView.addSubview(headImage)
-//
-//        let neckImageRot = UIImageView(frame: CGRect(x: neckRotated.x/Double(headImageWidth)*Double(headView.frame.width),
-//                                                  y: neckRotated.y/Double(headImageHeight)*Double(headView.frame.height),
-//                                                  width: 5, height: 5))
-//        neckImageRot.backgroundColor = .green
-//        headView.addSubview(neckImageRot)
-//
-//        let neckImage = UIImageView(frame: CGRect(x: (neckX + headImageWidth/2)/Double(headImageWidth)*Double(headView.frame.width),
-//                                                  y: (neckY + headImageHeight/2)/Double(headImageHeight)*Double(headView.frame.height),
-//                                                  width: 5, height: 5))
-//        neckImage.backgroundColor = .red
-//        headView.addSubview(neckImage)
-        
-        let croppedImage = headView.image?.cgImage?.cropping(to: CGRect(x: headRotated.x,
-                                                                        y: headRotated.y,
-                                                                        width: 50,
-                                                                        height: neckRotated.y - headRotated.y))
-        
-        cropHeadView.image = UIImage(cgImage: croppedImage!)
+        bodyConfiguration.bodyVectors.forEach {
+            var location1, location2: NormalizedLocation
+            
+            switch $0.key {
+            case .head2Neck:
+                location1 = bodyConfiguration.bodyLocations[.head]!
+                location2 = bodyConfiguration.bodyLocations[.neck]!
+            case .neck2ShoulderLeft:
+                location1 = bodyConfiguration.bodyLocations[.neck]!
+                location2 = bodyConfiguration.bodyLocations[.shoulderLeft]!
+            case .neck2ShoulderRight:
+                location1 = bodyConfiguration.bodyLocations[.neck]!
+                location2 = bodyConfiguration.bodyLocations[.shoulderRight]!
+            case .neck2Butt:
+                location1 = bodyConfiguration.bodyLocations[.neck]!
+                location2 = bodyConfiguration.bodyLocations[.butt]!
+            case .shoulderLeft2ElbowLeft:
+                location1 = bodyConfiguration.bodyLocations[.shoulderLeft]!
+                location2 = bodyConfiguration.bodyLocations[.elbowLeft]!
+            case .shoulderRight2ElbowRight:
+                location1 = bodyConfiguration.bodyLocations[.shoulderRight]!
+                location2 = bodyConfiguration.bodyLocations[.elbowRight]!
+            case .elbowLeft2HandLeft:
+                location1 = bodyConfiguration.bodyLocations[.elbowLeft]!
+                location2 = bodyConfiguration.bodyLocations[.handLeft]!
+            case .elbowRight2HandRight:
+                location1 = bodyConfiguration.bodyLocations[.elbowRight]!
+                location2 = bodyConfiguration.bodyLocations[.handRight]!
+            case .butt2KneeLeft:
+                location1 = bodyConfiguration.bodyLocations[.butt]!
+                location2 = bodyConfiguration.bodyLocations[.kneeLeft]!
+            case .butt2KneeRight:
+                location1 = bodyConfiguration.bodyLocations[.butt]!
+                location2 = bodyConfiguration.bodyLocations[.kneeRight]!
+            case .kneeLeft2FootLeft:
+                location1 = bodyConfiguration.bodyLocations[.kneeLeft]!
+                location2 = bodyConfiguration.bodyLocations[.footLeft]!
+            case .kneeRight2FootRight:
+                location1 = bodyConfiguration.bodyLocations[.kneeRight]!
+                location2 = bodyConfiguration.bodyLocations[.footRight]!
+            }
+            
+            let bodyVector = $0.value
+            let bodyAngle = atan(bodyVector.yComponent / bodyVector.xComponent)
+            
+            var angle2Rotate: Double
+            if bodyVector.xComponent > 0 {
+                angle2Rotate = Double.pi / 2 - bodyAngle
+            } else if bodyVector.xComponent < 0 {
+                angle2Rotate = -Double.pi / 2 - bodyAngle
+            } else {
+                if bodyVector.yComponent > 0 {
+                    angle2Rotate = 0
+                } else {
+                    angle2Rotate = Double.pi
+                }
+            }
+            
+            headView.image = modelImage.image?.rotate(radians: CGFloat(angle2Rotate))
+            let headImageWidth = Double(headView.image!.size.width)
+            let headImageHeight = Double(headView.image!.size.height)
+            
+            let location1X = (location1.xNormalized) * headImageWidth
+            let location1Y = (location1.yNormalized) * headImageHeight
+            let location2X = (location2.xNormalized) * headImageWidth
+            let location2Y = (location2.yNormalized) * headImageHeight
+            
+            let location1Rotated = Location(x: location1X, y: location1Y).rotated(by: angle2Rotate)
+            location1Rotated.x = location1Rotated.x + headImageWidth/2
+            location1Rotated.y = location1Rotated.y + headImageHeight/2
+            
+            let location2Rotated = Location(x: location2X, y: location2Y).rotated(by: angle2Rotate)
+            location2Rotated.x = location2Rotated.x + headImageWidth/2
+            location2Rotated.y = location2Rotated.y + headImageHeight/2
+            
+            let croppedImage = headView.image?.cgImage?.cropping(to: CGRect(x: location1Rotated.x,
+                                                                            y: location1Rotated.y,
+                                                                            width: 50,
+                                                                            height: location2Rotated.y - location1Rotated.y))
+            bodyImageDict[$0.key] = croppedImage
+            
+            let headImageRot = UIImageView(frame: CGRect(x: location1Rotated.x/Double(headImageWidth)*Double(headView.frame.width),
+                                                      y: location1Rotated.y/Double(headImageHeight)*Double(headView.frame.height),
+                                                      width: 5, height: 5))
+            headImageRot.backgroundColor = .green
+            headView.addSubview(headImageRot)
+    
+            let headImage = UIImageView(frame: CGRect(x: (location1X + headImageWidth/2)/Double(headImageWidth)*Double(headView.frame.width),
+                                                      y: (location1Y + headImageHeight/2)/Double(headImageHeight)*Double(headView.frame.height),
+                                                      width: 5, height: 5))
+            headImage.backgroundColor = .red
+            headView.addSubview(headImage)
+    
+            let neckImageRot = UIImageView(frame: CGRect(x: location2Rotated.x/Double(headImageWidth)*Double(headView.frame.width),
+                                                      y: location2Rotated.y/Double(headImageHeight)*Double(headView.frame.height),
+                                                      width: 5, height: 5))
+            neckImageRot.backgroundColor = .green
+            headView.addSubview(neckImageRot)
+    
+            let neckImage = UIImageView(frame: CGRect(x: (location2X + headImageWidth/2)/Double(headImageWidth)*Double(headView.frame.width),
+                                                      y: (location2Y + headImageHeight/2)/Double(headImageHeight)*Double(headView.frame.height),
+                                                      width: 5, height: 5))
+            neckImage.backgroundColor = .red
+            headView.addSubview(neckImage)
+            
+        }
     }
 }
 
@@ -163,7 +211,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return Int(allBodyJoints.count / 4)
+        return Int(allBodyJoints.count / 4) + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -165,6 +165,9 @@ enum BodyJoint: String, CaseIterable {
 struct NormalizedVector {
     let xComponent: Double
     let yComponent: Double
+    var norm: Double {
+        return sqrt(xComponent*xComponent + yComponent*yComponent)
+    }
     
     init(location1: NormalizedLocation, location2: NormalizedLocation) {
         xComponent = location2.xNormalized - location1.xNormalized

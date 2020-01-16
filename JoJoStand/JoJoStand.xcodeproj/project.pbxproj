@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FE0FF22023CD3EDB00086681 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FF21F23CD3EDB00086681 /* UIImage.swift */; };
+		FE16DFF123CFD4C2000D98F5 /* StandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DFF023CFD4C2000D98F5 /* StandData.swift */; };
 		FE281F0B23CEBF75008498FC /* Transform.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE281F0A23CEBF75008498FC /* Transform.storyboard */; };
 		FE281F0D23CEBF8A008498FC /* TransformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE281F0C23CEBF8A008498FC /* TransformViewController.swift */; };
 		FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DC823CBB2E400DBFEE1 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		FE0FF21F23CD3EDB00086681 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		FE16DFF023CFD4C2000D98F5 /* StandData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandData.swift; sourceTree = "<group>"; };
 		FE281F0A23CEBF75008498FC /* Transform.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transform.storyboard; sourceTree = "<group>"; };
 		FE281F0C23CEBF8A008498FC /* TransformViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformViewController.swift; sourceTree = "<group>"; };
 		FE614DC523CBB2E400DBFEE1 /* JoJoStand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoJoStand.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		FE16DFEF23CFD48A000D98F5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FE16DFF023CFD4C2000D98F5 /* StandData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		FE281F0923CEBF53008498FC /* Transform */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 				FE614DE023CBBA3A00DBFEE1 /* Main */,
 				FE281F0923CEBF53008498FC /* Transform */,
 				FE0FF21E23CD3EC000086681 /* Extension */,
+				FE16DFEF23CFD48A000D98F5 /* Data */,
 				FE614DDF23CBB35100DBFEE1 /* Supporting Files */,
 				FE614DD423CBB2E500DBFEE1 /* Assets.xcassets */,
 				FE614DD623CBB2E500DBFEE1 /* LaunchScreen.storyboard */,
@@ -195,6 +206,7 @@
 				FE281F0D23CEBF8A008498FC /* TransformViewController.swift in Sources */,
 				FE614DE223CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift in Sources */,
 				FE0FF22023CD3EDB00086681 /* UIImage.swift in Sources */,
+				FE16DFF123CFD4C2000D98F5 /* StandData.swift in Sources */,
 				FE614DCD23CBB2E400DBFEE1 /* MainViewController.swift in Sources */,
 				FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */,
 				FE614DE423CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift in Sources */,
