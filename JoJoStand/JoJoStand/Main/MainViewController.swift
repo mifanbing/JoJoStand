@@ -57,15 +57,21 @@ class MainViewController: UIViewController {
         let frame = tappedImage.frame
         let xNormalized = Double(tapLocation.x / frame.width) - 0.5
         let yNormalized = Double(tapLocation.y / frame.height) - 0.5
+         
+        let viewHit = modelImage.hitTest(CGPoint(x: tapLocation.x, y: tapLocation.y), with: nil)
+        if viewHit == modelImage {
+            bodyConfiguration.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
+            dropPin(image: tappedImage, x: tapLocation.x, y: tapLocation.y)
+        } else {
+            return
+        }
         
-        bodyConfiguration.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
-        dropPin(image: tappedImage, x: tapLocation.x, y: tapLocation.y)
     }
 
     func dropPin(image: UIImageView, x: CGFloat, y: CGFloat) {
         if bodyConfiguration.bodyLocations[currentBodyJoint] != nil {
             for subView in image.subviews {
-                if subView.tag == currentBodyJointIndex {
+                if subView.tag == currentBodyJointIndex && !(subView is SlideGauge) {
                     subView.removeFromSuperview()
                 }
             }
@@ -76,6 +82,11 @@ class MainViewController: UIViewController {
         pinImage.tag = currentBodyJointIndex
         
         image.addSubview(pinImage)
+        
+        let slider = SlideGauge(frame: CGRect(x: x, y: y, width: 200, height: 80))
+        image.addSubview(slider)
+        image.bringSubviewToFront(slider)
+        
     }
     
     @IBAction func drawIt(_ sender: Any) {

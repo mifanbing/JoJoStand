@@ -21,6 +21,9 @@
 		FE614DE223CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DE123CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift */; };
 		FE614DE423CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DE323CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift */; };
 		FE614DE623CBD1E200DBFEE1 /* BodyConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE614DE523CBD1E200DBFEE1 /* BodyConfiguration.swift */; };
+		FECA9FD223D15BE400789F33 /* SlideGauge.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECA9FD123D15BE400789F33 /* SlideGauge.xib */; };
+		FECA9FD423D15CA200789F33 /* SlideGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA9FD323D15CA200789F33 /* SlideGauge.swift */; };
+		FECA9FD623D1770100789F33 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA9FD523D1770100789F33 /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		FE614DE123CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyJointCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE614DE323CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyJointEmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE614DE523CBD1E200DBFEE1 /* BodyConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyConfiguration.swift; sourceTree = "<group>"; };
+		FECA9FD123D15BE400789F33 /* SlideGauge.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideGauge.xib; sourceTree = "<group>"; };
+		FECA9FD323D15CA200789F33 /* SlideGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideGauge.swift; sourceTree = "<group>"; };
+		FECA9FD523D1770100789F33 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				FE0FF21F23CD3EDB00086681 /* UIImage.swift */,
+				FECA9FD523D1770100789F33 /* UIView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -127,8 +134,18 @@
 				FE614DE123CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift */,
 				FE614DE323CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift */,
 				FE614DE523CBD1E200DBFEE1 /* BodyConfiguration.swift */,
+				FECA9FCE23D15B5F00789F33 /* Slide Gague */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		FECA9FCE23D15B5F00789F33 /* Slide Gague */ = {
+			isa = PBXGroup;
+			children = (
+				FECA9FD123D15BE400789F33 /* SlideGauge.xib */,
+				FECA9FD323D15CA200789F33 /* SlideGauge.swift */,
+			);
+			path = "Slide Gague";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +210,7 @@
 				FE614DD523CBB2E500DBFEE1 /* Assets.xcassets in Resources */,
 				FE614DD023CBB2E400DBFEE1 /* Main.storyboard in Resources */,
 				FE281F0B23CEBF75008498FC /* Transform.storyboard in Resources */,
+				FECA9FD223D15BE400789F33 /* SlideGauge.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,9 +225,11 @@
 				FE614DE223CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift in Sources */,
 				FE0FF22023CD3EDB00086681 /* UIImage.swift in Sources */,
 				FE16DFF123CFD4C2000D98F5 /* StandData.swift in Sources */,
+				FECA9FD623D1770100789F33 /* UIView.swift in Sources */,
 				FE614DCD23CBB2E400DBFEE1 /* MainViewController.swift in Sources */,
 				FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */,
 				FE614DE423CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift in Sources */,
+				FECA9FD423D15CA200789F33 /* SlideGauge.swift in Sources */,
 				FE614DD323CBB2E400DBFEE1 /* JoJoStand.xcdatamodeld in Sources */,
 				FE614DE623CBD1E200DBFEE1 /* BodyConfiguration.swift in Sources */,
 				FE614DCB23CBB2E400DBFEE1 /* SceneDelegate.swift in Sources */,
