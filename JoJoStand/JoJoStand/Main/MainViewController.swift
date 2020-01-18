@@ -11,8 +11,8 @@ class MainViewController: UIViewController {
     var currentBodyJointIndex: Int!
     var bodyConfiguration: BodyConfiguration = BodyConfiguration()
     var bodyImageDict: [BodyVector: CGImage]!
-    let slideGaugeWidth: Double = 120
-    let slideGaugeHeight: Double = 50
+    let slideGaugeWidth: Double = 100
+    let slideGaugeHeight: Double = 40
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,8 @@ class MainViewController: UIViewController {
         modelImage.isUserInteractionEnabled = true
         modelImage.addGestureRecognizer(tapGestureRecognizer)
         modelImage.image = UIImage(named: "tibi")
-        
+        //modelImage.image = UIImage(named: "Josuke")
+        //headView.image = UIImage(named: "Josuke")
         headView.image = UIImage(named: "tibi")
         headView.layer.borderColor = .init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         headView.layer.borderWidth = 5
@@ -108,6 +109,8 @@ class MainViewController: UIViewController {
         let connectedBodyVector = BodyJoint.connectedBodyVector(bodyJoint: currentBodyJoint)
         
         connectedBodyVector.forEach { bodyVector in
+            guard bodyVector != .neck2ShoulderLeft, bodyVector != .neck2ShoulderRight else { return }
+            
             if let vector = bodyConfiguration.bodyVectors[bodyVector] {
                 var angle = atan(vector.yComponent / vector.xComponent)
                 if vector.xComponent < 0 {

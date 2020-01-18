@@ -19,18 +19,41 @@ class StandData {
         bodyLocations[.footRight] = NormalizedLocation(xNormalized: 0.0211, yNormalized: 0.367)
         
         bodyVectors[.head2Neck] = NormalizedVector(location1: bodyLocations[.head]!, location2: bodyLocations[.neck]!)
+        bodyVectors[.head2Neck]!.width = 0.0987
+        
         bodyVectors[.neck2ShoulderLeft] = NormalizedVector(location1: bodyLocations[.neck]!, location2: bodyLocations[.shoulderLeft]!)
-        bodyVectors[.neck2ShoulderRight] = NormalizedVector(location1: bodyLocations[.neck]!, location2: bodyLocations[.shoulderRight]!)
-        bodyVectors[.neck2Butt] = NormalizedVector(location1: bodyLocations[.neck]!, location2: bodyLocations[.butt]!)
-        bodyVectors[.shoulderLeft2ElbowLeft] = NormalizedVector(location1: bodyLocations[.shoulderLeft]!, location2: bodyLocations[.elbowLeft]!)
-        bodyVectors[.elbowLeft2HandLeft] = NormalizedVector(location1: bodyLocations[.elbowLeft]!, location2: bodyLocations[.handLeft]!)
-        bodyVectors[.shoulderRight2ElbowRight] = NormalizedVector(location1: bodyLocations[.shoulderRight]!, location2: bodyLocations[.handRight]!)
-        bodyVectors[.elbowRight2HandRight] = NormalizedVector(location1: bodyLocations[.elbowRight]!, location2: bodyLocations[.handRight]!)
-        bodyVectors[.butt2KneeLeft] = NormalizedVector(location1: bodyLocations[.butt]!, location2: bodyLocations[.kneeLeft]!)
-        bodyVectors[.butt2KneeRight] = NormalizedVector(location1: bodyLocations[.butt]!, location2: bodyLocations[.kneeRight]!)
-        bodyVectors[.kneeLeft2FootLeft] = NormalizedVector(location1: bodyLocations[.kneeLeft]!, location2: bodyLocations[.footLeft]!)
-        bodyVectors[.kneeRight2FootRight] = NormalizedVector(location1: bodyLocations[.kneeRight]!, location2: bodyLocations[.footRight]!)
+        bodyVectors[.neck2ShoulderLeft]!.width = 0.0517
             
+        bodyVectors[.neck2ShoulderRight] = NormalizedVector(location1: bodyLocations[.neck]!, location2: bodyLocations[.shoulderRight]!)
+        bodyVectors[.neck2ShoulderRight]!.width = 0.0765
+        
+        bodyVectors[.neck2Butt] = NormalizedVector(location1: bodyLocations[.neck]!, location2: bodyLocations[.butt]!)
+        bodyVectors[.neck2Butt]!.width = 0.213
+        
+        bodyVectors[.shoulderLeft2ElbowLeft] = NormalizedVector(location1: bodyLocations[.shoulderLeft]!, location2: bodyLocations[.elbowLeft]!)
+        bodyVectors[.shoulderLeft2ElbowLeft]!.width = 0.0697
+            
+        bodyVectors[.elbowLeft2HandLeft] = NormalizedVector(location1: bodyLocations[.elbowLeft]!, location2: bodyLocations[.handLeft]!)
+        bodyVectors[.elbowLeft2HandLeft]!.width = 0.0393
+        
+        bodyVectors[.shoulderRight2ElbowRight] = NormalizedVector(location1: bodyLocations[.shoulderRight]!, location2: bodyLocations[.handRight]!)
+        bodyVectors[.shoulderRight2ElbowRight]!.width = 0.0393
+            
+        bodyVectors[.elbowRight2HandRight] = NormalizedVector(location1: bodyLocations[.elbowRight]!, location2: bodyLocations[.handRight]!)
+        bodyVectors[.elbowRight2HandRight]!.width = 0.0542
+        
+        bodyVectors[.butt2KneeLeft] = NormalizedVector(location1: bodyLocations[.butt]!, location2: bodyLocations[.kneeLeft]!)
+        bodyVectors[.butt2KneeLeft]!.width = 0.133
+        
+        bodyVectors[.butt2KneeRight] = NormalizedVector(location1: bodyLocations[.butt]!, location2: bodyLocations[.kneeRight]!)
+        bodyVectors[.butt2KneeRight]!.width = 0.148
+            
+        bodyVectors[.kneeLeft2FootLeft] = NormalizedVector(location1: bodyLocations[.kneeLeft]!, location2: bodyLocations[.footLeft]!)
+        bodyVectors[.kneeLeft2FootLeft]!.width = 0.126
+        
+        bodyVectors[.kneeRight2FootRight] = NormalizedVector(location1: bodyLocations[.kneeRight]!, location2: bodyLocations[.footRight]!)
+        bodyVectors[.kneeRight2FootRight]!.width = 0.126
+        
         bodyConfiguration.bodyLocations = bodyLocations
         bodyConfiguration.bodyVectors = bodyVectors
         
