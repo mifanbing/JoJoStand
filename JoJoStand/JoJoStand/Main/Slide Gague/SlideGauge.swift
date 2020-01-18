@@ -1,11 +1,22 @@
 import UIKit
 
+protocol SlideGaugeDelegate {
+    func valueChanged(normalizedValue: Double, tag: Int)
+}
+
 class SlideGauge: UIView {
     @IBOutlet weak var sliderLeft: UISlider!
     @IBOutlet weak var sliderRight: UISlider!
     @IBOutlet var contentView: UIView!
     
     var normalizedValue: Float!
+    var delegate: SlideGaugeDelegate?
+    
+    private lazy var thumbView: UIView = {
+        let thumb = UIView()
+        thumb.backgroundColor = .green
+        return thumb
+    }()
     
     @IBAction func slided(_ sender: Any) {
         guard let slider = sender as? UISlider else { return }
@@ -66,7 +77,39 @@ class SlideGauge: UIView {
         sliderLeft.value = 0.25
         sliderRight.value = 0.75
         normalizedValue = 0.5
+        sliderLeft.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
+        sliderRight.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
         
+        let thumb = thumbImage(radius: 10)
+        sliderLeft.setThumbImage(thumb, for: .normal)
+        sliderLeft.setThumbImage(thumb, for: .selected)
+        sliderLeft.setThumbImage(thumb, for: .highlighted)
+        sliderRight.setThumbImage(thumb, for: .normal)
+        sliderRight.setThumbImage(thumb, for: .selected)
+        sliderRight.setThumbImage(thumb, for: .highlighted)
     }
     
+    @objc func onSliderValChanged(slider: UISlider, event: UIEvent) {
+        if let touchEvent = event.allTouches?.first {
+            switch touchEvent.phase {
+            case .ended, .moved:
+                delegate?.valueChanged(normalizedValue: Double(normalizedValue), tag: tag)
+            default:
+                ()
+            }
+        }
+    }
+    
+    private func thumbImage(radius: CGFloat) -> UIImage {
+        // Set proper frame
+        // y: radius / 2 will correctly offset the thumb
+
+        thumbView.frame = CGRect(x: 0, y: radius / 2, width: radius, height: radius)
+        thumbView.layer.cornerRadius = radius / 2
+
+        let renderer = UIGraphicsImageRenderer(bounds: thumbView.bounds)
+        return renderer.image { rendererContext in
+            thumbView.layer.render(in: rendererContext.cgContext)
+        }
+    }
 }

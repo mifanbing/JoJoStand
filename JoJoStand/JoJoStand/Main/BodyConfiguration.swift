@@ -198,6 +198,7 @@ struct NormalizedVector {
     let yComponent: Double
     let start: NormalizedLocation
     let end: NormalizedLocation
+    var width: Double
     
     var norm: Double {
         return sqrt(xComponent*xComponent + yComponent*yComponent)
@@ -208,6 +209,7 @@ struct NormalizedVector {
         yComponent = location2.yNormalized - location1.yNormalized
         start = location1
         end = location2
+        width = 0
     }
 }
 
