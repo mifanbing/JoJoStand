@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
     var currentBodyJointIndex: Int!
     var bodyConfiguration: BodyConfiguration = BodyConfiguration()
     var bodyImageDict: [BodyVector: CGImage]!
+    var slideGaugeDict: [BodyVector: SlideGauge]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class MainViewController: UIViewController {
         currentBodyJointIndex = 0
         
         bodyImageDict = [:]
+        slideGaugeDict = [:]
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,14 +56,12 @@ class MainViewController: UIViewController {
         let tapLocation = tapGestureRecognizer.location(in: tappedImage)
         
         //Will rotate w.r.t center
-        let frame = tappedImage.frame
-        let xNormalized = Double(tapLocation.x / frame.width) - 0.5
-        let yNormalized = Double(tapLocation.y / frame.height) - 0.5
-         
+        
         let viewHit = modelImage.hitTest(CGPoint(x: tapLocation.x, y: tapLocation.y), with: nil)
         if viewHit == modelImage {
-            bodyConfiguration.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
+            //bodyConfiguration.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
             dropPin(image: tappedImage, x: tapLocation.x, y: tapLocation.y)
+            adjustSlideGauge(image: tappedImage, x: tapLocation.x, y: tapLocation.y)
         } else {
             return
         }
@@ -69,11 +69,9 @@ class MainViewController: UIViewController {
     }
 
     func dropPin(image: UIImageView, x: CGFloat, y: CGFloat) {
-        if bodyConfiguration.bodyLocations[currentBodyJoint] != nil {
-            for subView in image.subviews {
-                if subView.tag == currentBodyJointIndex && !(subView is SlideGauge) {
-                    subView.removeFromSuperview()
-                }
+        for subView in image.subviews {
+            if subView.tag == currentBodyJointIndex && !(subView is SlideGauge) {
+                subView.removeFromSuperview()
             }
         }
         
@@ -83,10 +81,71 @@ class MainViewController: UIViewController {
         
         image.addSubview(pinImage)
         
-        let slider = SlideGauge(frame: CGRect(x: x, y: y, width: 200, height: 80))
-        image.addSubview(slider)
-        image.bringSubviewToFront(slider)
+//        let slider = SlideGauge(frame: CGRect(x: x, y: y, width: 200, height: 80))
+//        if let vector = bodyConfiguration.bodyVectors[.head2Neck] {
+//            var angle = atan(vector.yComponent / vector.xComponent)
+//            if vector.xComponent < 0 {
+//                angle = angle + Double.pi / 2
+//            }
+//            slider.transform = CGAffineTransform(rotationAngle: CGFloat(angle))
+//        }
+//        image.addSubview(slider)
+//        image.bringSubviewToFront(slider)
         
+    }
+    
+    func adjustSlideGauge(image: UIImageView, x: CGFloat, y: CGFloat) {
+        let frame = image.frame
+        let xNormalized = Double(x / frame.width) - 0.5
+        let yNormalized = Double(y / frame.height) - 0.5
+        
+        let slideGaugeWidth: CGFloat = 120
+        let slideGaugeHeight: CGFloat = 50
+        
+        let shouldAddSlideGauge = bodyConfiguration.bodyLocations[currentBodyJoint] == nil
+        //add slide gauge
+        
+        let connectedBodyVector = BodyJoint.connectedBodyVector(bodyJoint: currentBodyJoint)
+        bodyConfiguration.update(bodyJoint: currentBodyJoint, normalizedLocation: NormalizedLocation(xNormalized: xNormalized, yNormalized: yNormalized))
+        connectedBodyVector.forEach { bodyVector in
+            if let vector = bodyConfiguration.bodyVectors[bodyVector] {
+                var angle = atan(vector.yComponent / vector.xComponent)
+                if vector.xComponent < 0 {
+                    angle = angle + Double.pi
+                }
+                let angle2Rotate = angle - Double.pi / 2
+                let xCenter = (vector.start.xNormalized == xNormalized) ?
+                            x + CGFloat(vector.xComponent)/2 * frame.width :
+                            x - CGFloat(vector.xComponent)/2 * frame.width
+                    
+                let yCenter = (vector.start.yNormalized == yNormalized) ?
+                            y + CGFloat(vector.yComponent)/2 * frame.height :
+                            y - CGFloat(vector.yComponent)/2 * frame.height
+                //- CGFloat(slideGaugeWidth/2 * cos(angle2Rotate))
+                //- CGFloat(slideGaugeWidth/2 * sin(angle2Rotate))
+                let slideGauge = SlideGauge(frame: CGRect(x: 0,
+                                                          y: 0 ,
+                                                          width: CGFloat(slideGaugeWidth),
+                                                          height: CGFloat(slideGaugeHeight)))
+                //slideGaugeDict[$0] = slideGauge
+                var t = CGAffineTransform.identity
+                t = t.translatedBy(x: xCenter - slideGaugeWidth/2, y: yCenter - slideGaugeHeight/2)
+                t = t.rotated(by: CGFloat(angle2Rotate))
+                slideGauge.transform = t
+                if shouldAddSlideGauge {
+                    slideGauge.tag = bodyVector.rawValue
+                    image.addSubview(slideGauge)
+                    //slideGaugeDict[$0] = slideGauge
+                } else {
+                    image.subviews.forEach {
+                        if $0.tag == bodyVector.rawValue {
+                            $0.transform = t
+                        }
+                    }
+                }
+            }
+        }
+
     }
     
     @IBAction func drawIt(_ sender: Any) {

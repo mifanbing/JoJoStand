@@ -160,11 +160,45 @@ enum BodyJoint: String, CaseIterable {
     case kneeRight
     case footLeft
     case footRight
+    
+    static func connectedBodyVector(bodyJoint: BodyJoint) -> [BodyVector] {
+        switch bodyJoint {
+        case .head:
+            return [.head2Neck]
+        case .neck:
+            return [.head2Neck, .neck2Butt, .neck2ShoulderLeft, .neck2ShoulderRight]
+        case .shoulderLeft:
+            return [.neck2ShoulderLeft, .shoulderLeft2ElbowLeft]
+        case .shoulderRight:
+            return [.neck2ShoulderRight, .shoulderRight2ElbowRight]
+        case .elbowLeft:
+            return [.shoulderLeft2ElbowLeft, .elbowLeft2HandLeft]
+        case .elbowRight:
+            return [.elbowRight2HandRight, .shoulderRight2ElbowRight]
+        case .handLeft:
+            return [.elbowLeft2HandLeft]
+        case .handRight:
+            return [.elbowRight2HandRight]
+        case .butt:
+            return [.butt2KneeLeft, .butt2KneeRight, .neck2Butt]
+        case .kneeLeft:
+            return [.kneeLeft2FootLeft, .butt2KneeLeft]
+        case .kneeRight:
+            return [.kneeRight2FootRight, .butt2KneeRight]
+        case .footLeft:
+            return [.kneeLeft2FootLeft]
+        case .footRight:
+            return [.kneeRight2FootRight]
+        }
+    }
 }
 
 struct NormalizedVector {
     let xComponent: Double
     let yComponent: Double
+    let start: NormalizedLocation
+    let end: NormalizedLocation
+    
     var norm: Double {
         return sqrt(xComponent*xComponent + yComponent*yComponent)
     }
@@ -172,20 +206,22 @@ struct NormalizedVector {
     init(location1: NormalizedLocation, location2: NormalizedLocation) {
         xComponent = location2.xNormalized - location1.xNormalized
         yComponent = location2.yNormalized - location1.yNormalized
+        start = location1
+        end = location2
     }
 }
 
-enum BodyVector: String, CaseIterable {
-    case head2Neck
-    case neck2ShoulderLeft
-    case neck2ShoulderRight
-    case shoulderLeft2ElbowLeft
-    case shoulderRight2ElbowRight
-    case elbowLeft2HandLeft
-    case elbowRight2HandRight
-    case neck2Butt
-    case butt2KneeLeft
-    case butt2KneeRight
-    case kneeLeft2FootLeft
-    case kneeRight2FootRight
+enum BodyVector: Int, CaseIterable {
+    case head2Neck = 100
+    case neck2ShoulderLeft = 101
+    case neck2ShoulderRight = 102
+    case shoulderLeft2ElbowLeft = 103
+    case shoulderRight2ElbowRight = 104
+    case elbowLeft2HandLeft = 105
+    case elbowRight2HandRight = 106
+    case neck2Butt = 107
+    case butt2KneeLeft = 108
+    case butt2KneeRight = 109
+    case kneeLeft2FootLeft = 110
+    case kneeRight2FootRight = 111
 }
