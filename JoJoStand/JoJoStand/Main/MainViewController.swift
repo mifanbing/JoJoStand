@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     var bodyConfiguration: BodyConfiguration = BodyConfiguration()
     var bodyImageDict: [BodyVector: CGImage]!
     let slideGaugeWidth: Double = 100
-    let slideGaugeHeight: Double = 40
+    let slideGaugeHeight: Double = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +20,10 @@ class MainViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         modelImage.isUserInteractionEnabled = true
         modelImage.addGestureRecognizer(tapGestureRecognizer)
-        modelImage.image = UIImage(named: "tibi")
+        modelImage.image = UIImage(named: "vernon")
         //modelImage.image = UIImage(named: "Josuke")
         //headView.image = UIImage(named: "Josuke")
-        headView.image = UIImage(named: "tibi")
+        headView.image = UIImage(named: "vernon")
         headView.layer.borderColor = .init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         headView.layer.borderWidth = 5
         
