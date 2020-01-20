@@ -20,10 +20,10 @@ class MainViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         modelImage.isUserInteractionEnabled = true
         modelImage.addGestureRecognizer(tapGestureRecognizer)
-        modelImage.image = UIImage(named: "vernon")
+        modelImage.image = UIImage(named: "vernonBot")
         //modelImage.image = UIImage(named: "Josuke")
         //headView.image = UIImage(named: "Josuke")
-        headView.image = UIImage(named: "vernon")
+        headView.image = UIImage(named: "vernonBot")
         headView.layer.borderColor = .init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         headView.layer.borderWidth = 5
         
