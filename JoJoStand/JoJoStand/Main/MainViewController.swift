@@ -21,10 +21,10 @@ class MainViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         modelImage.isUserInteractionEnabled = true
         modelImage.addGestureRecognizer(tapGestureRecognizer)
-        modelImage.image = UIImage(named: "vernonBot")
+        modelImage.image = UIImage(named: "tibi")
         //modelImage.image = UIImage(named: "Josuke")
         //headView.image = UIImage(named: "Josuke")
-        let headImage = UIImage(named: "vernonBot")
+        let headImage = UIImage(named: "tibi")
         let targetSizeCGFloat = min(headImage!.size.width, headImage!.size.height)
         headView.image = headImage!.resizeImage(targetSize: CGSize(width: targetSizeCGFloat, height: targetSizeCGFloat))
         targetSize = Double(targetSizeCGFloat)

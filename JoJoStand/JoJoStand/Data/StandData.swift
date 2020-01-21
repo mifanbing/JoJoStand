@@ -36,7 +36,7 @@ class StandData {
         bodyVectors[.elbowLeft2HandLeft] = NormalizedVector(location1: bodyLocations[.elbowLeft]!, location2: bodyLocations[.handLeft]!)
         bodyVectors[.elbowLeft2HandLeft]!.width = 0.0393
         
-        bodyVectors[.shoulderRight2ElbowRight] = NormalizedVector(location1: bodyLocations[.shoulderRight]!, location2: bodyLocations[.handRight]!)
+        bodyVectors[.shoulderRight2ElbowRight] = NormalizedVector(location1: bodyLocations[.shoulderRight]!, location2: bodyLocations[.elbowRight]!)
         bodyVectors[.shoulderRight2ElbowRight]!.width = 0.0393
             
         bodyVectors[.elbowRight2HandRight] = NormalizedVector(location1: bodyLocations[.elbowRight]!, location2: bodyLocations[.handRight]!)
