@@ -13,6 +13,7 @@ class MainViewController: UIViewController {
     var bodyImageDict: [BodyVector: CGImage]!
     let slideGaugeWidth: Double = 100
     let slideGaugeHeight: Double = 20
+    var targetSize: Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,11 @@ class MainViewController: UIViewController {
         modelImage.image = UIImage(named: "vernonBot")
         //modelImage.image = UIImage(named: "Josuke")
         //headView.image = UIImage(named: "Josuke")
-        headView.image = UIImage(named: "vernonBot")
+        let headImage = UIImage(named: "vernonBot")
+        let targetSizeCGFloat = min(headImage!.size.width, headImage!.size.height)
+        headView.image = headImage!.resizeImage(targetSize: CGSize(width: targetSizeCGFloat, height: targetSizeCGFloat))
+        targetSize = Double(targetSizeCGFloat)
+        
         headView.layer.borderColor = .init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         headView.layer.borderWidth = 5
         
@@ -210,11 +215,12 @@ class MainViewController: UIViewController {
             headView.image = modelImage.image?.rotate(radians: CGFloat(angle2Rotate))
             let headImageWidth = Double(headView.image!.size.width)
             let headImageHeight = Double(headView.image!.size.height)
+            let scale = headImageWidth / targetSize
             
-            let location1X = (location1.xNormalized) * headImageWidth
-            let location1Y = (location1.yNormalized) * headImageHeight
-            let location2X = (location2.xNormalized) * headImageWidth
-            let location2Y = (location2.yNormalized) * headImageHeight
+            let location1X = (location1.xNormalized) * headImageWidth / scale
+            let location1Y = (location1.yNormalized) * headImageHeight / scale
+            let location2X = (location2.xNormalized) * headImageWidth / scale
+            let location2Y = (location2.yNormalized) * headImageHeight / scale
             
             let location1Rotated = Location(x: location1X, y: location1Y).rotated(by: angle2Rotate)
             location1Rotated.x = location1Rotated.x + headImageWidth/2
