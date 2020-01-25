@@ -2,16 +2,16 @@ import UIKit
 
 extension UIImage {
     func rotate(radians: CGFloat) -> UIImage? {
-        var newSize = CGRect(origin: CGPoint.zero, size: self.size).applying(CGAffineTransform(rotationAngle: radians)).size
+        //var newSize = CGRect(origin: CGPoint.zero, size: self.size).applying(CGAffineTransform(rotationAngle: radians)).size
         // Trim off the extremely small float value to prevent core graphics from rounding it up
-        newSize.width = floor(newSize.width)
-        newSize.height = floor(newSize.height)
+        //newSize.width = floor(newSize.width)
+        //newSize.height = floor(newSize.height)
         
-        UIGraphicsBeginImageContextWithOptions(newSize, false, self.scale)
+        UIGraphicsBeginImageContextWithOptions(size, false, self.scale)
         let context = UIGraphicsGetCurrentContext()!
         
         // Move origin to middle
-        context.translateBy(x: newSize.width/2, y: newSize.height/2)
+        context.translateBy(x: size.width/2, y: size.height/2)
         // Rotate around middle
         context.rotate(by: radians)
         // Draw the image at its center
@@ -57,9 +57,9 @@ extension UIImage {
         transform = CATransform3DRotate(transform, CGFloat(newAngle), 0, 0, 1)
         let affineTransform = CATransform3DGetAffineTransform(transform)
         filter?.setValue(NSValue(cgAffineTransform: affineTransform), forKey: "inputTransform")
-        let contex = CIContext(options: [CIContextOption.useSoftwareRenderer:true])
+        let context = CIContext(options: [CIContextOption.useSoftwareRenderer:true])
         let outputImage = filter?.outputImage
-        let cgImage = contex.createCGImage(outputImage!, from: (outputImage?.extent)!)
+        let cgImage = context.createCGImage(outputImage!, from: (outputImage?.extent)!)
         let result = UIImage(cgImage: cgImage!)
         
         return result

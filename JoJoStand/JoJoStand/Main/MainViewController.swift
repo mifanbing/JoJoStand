@@ -21,13 +21,18 @@ class MainViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         modelImage.isUserInteractionEnabled = true
         modelImage.addGestureRecognizer(tapGestureRecognizer)
-        modelImage.image = UIImage(named: "tibi")
+        modelImage.image = UIImage(named: "vernonBot")
+        let headImage = UIImage(named: "vernonBot")
+        
         //modelImage.image = UIImage(named: "Josuke")
         //headView.image = UIImage(named: "Josuke")
-        let headImage = UIImage(named: "tibi")
+        
         let targetSizeCGFloat = min(headImage!.size.width, headImage!.size.height)
         headView.image = headImage!.resizeImage(targetSize: CGSize(width: targetSizeCGFloat, height: targetSizeCGFloat))
         targetSize = Double(targetSizeCGFloat)
+        headView.frame = CGRect(x: 0, y: 0, width: targetSize, height: targetSize)
+        headView.alpha = 0
+        headView.contentMode = .center
         
         headView.layer.borderColor = .init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         headView.layer.borderWidth = 5
@@ -155,45 +160,45 @@ class MainViewController: UIViewController {
     
     @IBAction func drawIt(_ sender: Any) {
         bodyConfiguration.bodyVectors.forEach {
-            var location1, location2: NormalizedLocation
+            var start, end: NormalizedLocation
             
             switch $0.key {
             case .head2Neck:
-                location1 = bodyConfiguration.bodyLocations[.head]!
-                location2 = bodyConfiguration.bodyLocations[.neck]!
+                start = bodyConfiguration.bodyLocations[.head]!
+                end = bodyConfiguration.bodyLocations[.neck]!
             case .neck2ShoulderLeft:
-                location1 = bodyConfiguration.bodyLocations[.neck]!
-                location2 = bodyConfiguration.bodyLocations[.shoulderLeft]!
+                start = bodyConfiguration.bodyLocations[.neck]!
+                end = bodyConfiguration.bodyLocations[.shoulderLeft]!
             case .neck2ShoulderRight:
-                location1 = bodyConfiguration.bodyLocations[.neck]!
-                location2 = bodyConfiguration.bodyLocations[.shoulderRight]!
+                start = bodyConfiguration.bodyLocations[.neck]!
+                end = bodyConfiguration.bodyLocations[.shoulderRight]!
             case .neck2Butt:
-                location1 = bodyConfiguration.bodyLocations[.neck]!
-                location2 = bodyConfiguration.bodyLocations[.butt]!
+                start = bodyConfiguration.bodyLocations[.neck]!
+                end = bodyConfiguration.bodyLocations[.butt]!
             case .shoulderLeft2ElbowLeft:
-                location1 = bodyConfiguration.bodyLocations[.shoulderLeft]!
-                location2 = bodyConfiguration.bodyLocations[.elbowLeft]!
+                start = bodyConfiguration.bodyLocations[.shoulderLeft]!
+                end = bodyConfiguration.bodyLocations[.elbowLeft]!
             case .shoulderRight2ElbowRight:
-                location1 = bodyConfiguration.bodyLocations[.shoulderRight]!
-                location2 = bodyConfiguration.bodyLocations[.elbowRight]!
+                start = bodyConfiguration.bodyLocations[.shoulderRight]!
+                end = bodyConfiguration.bodyLocations[.elbowRight]!
             case .elbowLeft2HandLeft:
-                location1 = bodyConfiguration.bodyLocations[.elbowLeft]!
-                location2 = bodyConfiguration.bodyLocations[.handLeft]!
+                start = bodyConfiguration.bodyLocations[.elbowLeft]!
+                end = bodyConfiguration.bodyLocations[.handLeft]!
             case .elbowRight2HandRight:
-                location1 = bodyConfiguration.bodyLocations[.elbowRight]!
-                location2 = bodyConfiguration.bodyLocations[.handRight]!
+                start = bodyConfiguration.bodyLocations[.elbowRight]!
+                end = bodyConfiguration.bodyLocations[.handRight]!
             case .butt2KneeLeft:
-                location1 = bodyConfiguration.bodyLocations[.butt]!
-                location2 = bodyConfiguration.bodyLocations[.kneeLeft]!
+                start = bodyConfiguration.bodyLocations[.butt]!
+                end = bodyConfiguration.bodyLocations[.kneeLeft]!
             case .butt2KneeRight:
-                location1 = bodyConfiguration.bodyLocations[.butt]!
-                location2 = bodyConfiguration.bodyLocations[.kneeRight]!
+                start = bodyConfiguration.bodyLocations[.butt]!
+                end = bodyConfiguration.bodyLocations[.kneeRight]!
             case .kneeLeft2FootLeft:
-                location1 = bodyConfiguration.bodyLocations[.kneeLeft]!
-                location2 = bodyConfiguration.bodyLocations[.footLeft]!
+                start = bodyConfiguration.bodyLocations[.kneeLeft]!
+                end = bodyConfiguration.bodyLocations[.footLeft]!
             case .kneeRight2FootRight:
-                location1 = bodyConfiguration.bodyLocations[.kneeRight]!
-                location2 = bodyConfiguration.bodyLocations[.footRight]!
+                start = bodyConfiguration.bodyLocations[.kneeRight]!
+                end = bodyConfiguration.bodyLocations[.footRight]!
             }
             
             let bodyVector = $0.value
@@ -217,18 +222,18 @@ class MainViewController: UIViewController {
             let headImageHeight = Double(headView.image!.size.height)
             let scale = headImageWidth / targetSize
             
-            let location1X = (location1.xNormalized) * headImageWidth / scale
-            let location1Y = (location1.yNormalized) * headImageHeight / scale
-            let location2X = (location2.xNormalized) * headImageWidth / scale
-            let location2Y = (location2.yNormalized) * headImageHeight / scale
+            let location1X = (start.xNormalized) * headImageWidth / scale
+            let location1Y = (start.yNormalized) * headImageHeight / scale
+            let location2X = (end.xNormalized) * headImageWidth / scale
+            let location2Y = (end.yNormalized) * headImageHeight / scale
             
             let location1Rotated = Location(x: location1X, y: location1Y).rotated(by: angle2Rotate)
-            location1Rotated.x = location1Rotated.x + headImageWidth/2
-            location1Rotated.y = location1Rotated.y + headImageHeight/2
+            location1Rotated.x = (location1Rotated.x + headImageWidth/2)
+            location1Rotated.y = (location1Rotated.y + headImageHeight/2)
             
             let location2Rotated = Location(x: location2X, y: location2Y).rotated(by: angle2Rotate)
-            location2Rotated.x = location2Rotated.x + headImageWidth/2
-            location2Rotated.y = location2Rotated.y + headImageHeight/2
+            location2Rotated.x = (location2Rotated.x + headImageWidth/2)
+            location2Rotated.y = (location2Rotated.y + headImageHeight/2)
             
             let croppedWidth = bodyVector.width * headImageWidth
             

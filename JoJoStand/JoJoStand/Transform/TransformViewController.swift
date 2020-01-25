@@ -17,6 +17,8 @@ class TransformViewController: UIViewController {
         bodyImageDict.forEach { bodyVector, image in
             if !notRender.contains(bodyVector) {
                 let tibiHeadImage = UIImage(cgImage: image)
+                //saveImage(image: tibiHeadImage, name: "\(bodyVector.rawValue)")
+                
                 let tibiVector = josukeBodyConfiguration.bodyVectors[bodyVector]!
                 let tibiImageView = UIImageView(frame: CGRect(x: 0,
                                                                   y: 0,
@@ -56,6 +58,22 @@ class TransformViewController: UIViewController {
                 view.addSubview(mark2)
                 view.bringSubviewToFront(mark2)
             }
+        }
+    }
+    
+    func saveImage(image: UIImage, name: String) -> Bool {
+        guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
+            return false
+        }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+            return false
+        }
+        do {
+            try data.write(to: directory.appendingPathComponent("\(name).png")!)
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
         }
     }
     
