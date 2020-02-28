@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		57308AA0240992D800C3E8F7 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57308A9E240992D800C3E8F7 /* OpenCVWrapper.mm */; };
-		57308AA32409942700C3E8F7 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57308AA12409940F00C3E8F7 /* opencv2.framework */; };
+		57308AA52409951700C3E8F7 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57308AA42409951600C3E8F7 /* opencv2.framework */; };
+		57308AA82409957200C3E8F7 /* RefineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57308AA72409957200C3E8F7 /* RefineViewController.swift */; };
+		57308AAA240995B300C3E8F7 /* Refine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57308AA9240995B300C3E8F7 /* Refine.storyboard */; };
 		FE0FF22023CD3EDB00086681 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FF21F23CD3EDB00086681 /* UIImage.swift */; };
 		FE16DFF123CFD4C2000D98F5 /* StandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DFF023CFD4C2000D98F5 /* StandData.swift */; };
 		FE281F0B23CEBF75008498FC /* Transform.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE281F0A23CEBF75008498FC /* Transform.storyboard */; };
@@ -33,7 +35,9 @@
 		57308A9C240992D800C3E8F7 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		57308A9D240992D800C3E8F7 /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
 		57308A9E240992D800C3E8F7 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
-		57308AA12409940F00C3E8F7 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		57308AA42409951600C3E8F7 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = JoJoStand/Frameworks/opencv2.framework; sourceTree = SOURCE_ROOT; };
+		57308AA72409957200C3E8F7 /* RefineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefineViewController.swift; sourceTree = "<group>"; };
+		57308AA9240995B300C3E8F7 /* Refine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Refine.storyboard; sourceTree = "<group>"; };
 		FE0FF21F23CD3EDB00086681 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		FE16DFF023CFD4C2000D98F5 /* StandData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandData.swift; sourceTree = "<group>"; };
 		FE281F0A23CEBF75008498FC /* Transform.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transform.storyboard; sourceTree = "<group>"; };
@@ -60,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57308AA32409942700C3E8F7 /* opencv2.framework in Frameworks */,
+				57308AA52409951700C3E8F7 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,9 +85,18 @@
 		57308A9A2409926700C3E8F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				57308AA12409940F00C3E8F7 /* opencv2.framework */,
+				57308AA42409951600C3E8F7 /* opencv2.framework */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		57308AA62409953300C3E8F7 /* Refine */ = {
+			isa = PBXGroup;
+			children = (
+				57308AA9240995B300C3E8F7 /* Refine.storyboard */,
+				57308AA72409957200C3E8F7 /* RefineViewController.swift */,
+			);
+			path = Refine;
 			sourceTree = "<group>";
 		};
 		FE0FF21E23CD3EC000086681 /* Extension */ = {
@@ -133,8 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				FE614DE023CBBA3A00DBFEE1 /* Main */,
-				57308A992409925400C3E8F7 /* OpenCV */,
 				FE281F0923CEBF53008498FC /* Transform */,
+				57308AA62409953300C3E8F7 /* Refine */,
+				57308A992409925400C3E8F7 /* OpenCV */,
 				FE0FF21E23CD3EC000086681 /* Extension */,
 				FE16DFEF23CFD48A000D98F5 /* Data */,
 				FE614DDF23CBB35100DBFEE1 /* Supporting Files */,
@@ -241,6 +255,7 @@
 				FE614DD023CBB2E400DBFEE1 /* Main.storyboard in Resources */,
 				FE281F0B23CEBF75008498FC /* Transform.storyboard in Resources */,
 				FECA9FD223D15BE400789F33 /* SlideGauge.xib in Resources */,
+				57308AAA240995B300C3E8F7 /* Refine.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +275,7 @@
 				FE614DCD23CBB2E400DBFEE1 /* MainViewController.swift in Sources */,
 				FE614DC923CBB2E400DBFEE1 /* AppDelegate.swift in Sources */,
 				FE614DE423CBBE4200DBFEE1 /* BodyJointEmptyCollectionViewCell.swift in Sources */,
+				57308AA82409957200C3E8F7 /* RefineViewController.swift in Sources */,
 				FECA9FD423D15CA200789F33 /* SlideGauge.swift in Sources */,
 				FE614DD323CBB2E400DBFEE1 /* JoJoStand.xcdatamodeld in Sources */,
 				FE614DE623CBD1E200DBFEE1 /* BodyConfiguration.swift in Sources */,
@@ -413,6 +429,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/JoJoStand/Frameworks",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JoJoStand/OpenCV/PrefixHeader.pch";
 				INFOPLIST_FILE = JoJoStand/Info.plist;
@@ -439,6 +456,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/JoJoStand/Frameworks",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JoJoStand/OpenCV/PrefixHeader.pch";
 				INFOPLIST_FILE = JoJoStand/Info.plist;
