@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57308AA0240992D800C3E8F7 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57308A9E240992D800C3E8F7 /* OpenCVWrapper.mm */; };
+		57308AA32409942700C3E8F7 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57308AA12409940F00C3E8F7 /* opencv2.framework */; };
 		FE0FF22023CD3EDB00086681 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FF21F23CD3EDB00086681 /* UIImage.swift */; };
 		FE16DFF123CFD4C2000D98F5 /* StandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DFF023CFD4C2000D98F5 /* StandData.swift */; };
 		FE281F0B23CEBF75008498FC /* Transform.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE281F0A23CEBF75008498FC /* Transform.storyboard */; };
@@ -27,6 +29,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57308A9B240992D800C3E8F7 /* JoJoStand-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JoJoStand-Bridging-Header.h"; sourceTree = "<group>"; };
+		57308A9C240992D800C3E8F7 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		57308A9D240992D800C3E8F7 /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		57308A9E240992D800C3E8F7 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		57308AA12409940F00C3E8F7 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		FE0FF21F23CD3EDB00086681 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		FE16DFF023CFD4C2000D98F5 /* StandData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandData.swift; sourceTree = "<group>"; };
 		FE281F0A23CEBF75008498FC /* Transform.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transform.storyboard; sourceTree = "<group>"; };
@@ -53,12 +60,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57308AA32409942700C3E8F7 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57308A992409925400C3E8F7 /* OpenCV */ = {
+			isa = PBXGroup;
+			children = (
+				57308A9D240992D800C3E8F7 /* OpenCVWrapper.h */,
+				57308A9E240992D800C3E8F7 /* OpenCVWrapper.mm */,
+				57308A9C240992D800C3E8F7 /* PrefixHeader.pch */,
+				57308A9B240992D800C3E8F7 /* JoJoStand-Bridging-Header.h */,
+			);
+			path = OpenCV;
+			sourceTree = "<group>";
+		};
+		57308A9A2409926700C3E8F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57308AA12409940F00C3E8F7 /* opencv2.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		FE0FF21E23CD3EC000086681 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +117,7 @@
 			children = (
 				FE614DC723CBB2E400DBFEE1 /* JoJoStand */,
 				FE614DC623CBB2E400DBFEE1 /* Products */,
+				57308A9A2409926700C3E8F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				FE614DE023CBBA3A00DBFEE1 /* Main */,
+				57308A992409925400C3E8F7 /* OpenCV */,
 				FE281F0923CEBF53008498FC /* Transform */,
 				FE0FF21E23CD3EC000086681 /* Extension */,
 				FE16DFEF23CFD48A000D98F5 /* Data */,
@@ -180,6 +209,7 @@
 				TargetAttributes = {
 					FE614DC423CBB2E400DBFEE1 = {
 						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -224,6 +254,7 @@
 				FE281F0D23CEBF8A008498FC /* TransformViewController.swift in Sources */,
 				FE614DE223CBBA7500DBFEE1 /* BodyJointCollectionViewCell.swift in Sources */,
 				FE0FF22023CD3EDB00086681 /* UIImage.swift in Sources */,
+				57308AA0240992D800C3E8F7 /* OpenCVWrapper.mm in Sources */,
 				FE16DFF123CFD4C2000D98F5 /* StandData.swift in Sources */,
 				FECA9FD623D1770100789F33 /* UIView.swift in Sources */,
 				FE614DCD23CBB2E400DBFEE1 /* MainViewController.swift in Sources */,
@@ -376,7 +407,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JoJoStand/OpenCV/PrefixHeader.pch";
 				INFOPLIST_FILE = JoJoStand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -384,6 +422,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rick.JoJoStand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JoJoStand/OpenCv/JoJoStand-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -393,7 +433,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JoJoStand/OpenCV/PrefixHeader.pch";
 				INFOPLIST_FILE = JoJoStand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -401,6 +448,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rick.JoJoStand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JoJoStand/OpenCv/JoJoStand-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
